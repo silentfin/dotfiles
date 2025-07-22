@@ -16,21 +16,17 @@ dynamic_title = false
 columns = 100
 lines = 30
 
-
 [font]
 size = 16
 normal = {family = "JetBrainsMono Nerd Font", style= "Mono"}
 
-
 [cursor]
 style ={shape = "Beam", blinking = "Always"}
-
 
 [[keyboard.bindings]]
 key = "Q"
 mods = "Control|Shift"
 action = "Quit"
-
 
 [[keyboard.bindings]]
 action = "ResetFontSize"
