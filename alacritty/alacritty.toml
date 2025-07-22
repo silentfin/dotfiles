@@ -1,0 +1,61 @@
+[general]
+import = [
+    "~/.config/alacritty/themes/themes/sfin.toml"
+]
+live_config_reload = true
+
+[window]
+padding = {x=10,y=8}
+opacity = 0.7
+startup_mode = "Windowed"
+decorations_theme_variant = "Dark"
+dynamic_padding = true
+dynamic_title = false
+
+[window.dimensions]
+columns = 100
+lines = 30
+
+
+[font]
+size = 16
+normal = {family = "JetBrainsMono Nerd Font", style= "Mono"}
+
+
+[cursor]
+style ={shape = "Beam", blinking = "Always"}
+
+
+[[keyboard.bindings]]
+key = "Q"
+mods = "Control|Shift"
+action = "Quit"
+
+
+[[keyboard.bindings]]
+action = "ResetFontSize"
+key = "Key0"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "IncreaseFontSize"
+key = "Equals"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "IncreaseFontSize"
+key = "Plus"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "DecreaseFontSize"
+key = "Minus"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "DecreaseFontSize"
+key = "Minus"
+mods = "Control"
+
+[mouse]
+hide_when_typing = true
