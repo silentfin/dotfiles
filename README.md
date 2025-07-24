@@ -15,4 +15,5 @@ my own dotfiles
 
 # screenshots
 
-![desktop](screenshots/00.png)
+![desktop](screenshots/00.png) 
+![fastfetch](screenshots/01.png)
