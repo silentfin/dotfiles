@@ -3,6 +3,7 @@
 
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
+export LANG="en_US.UTF-8"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time Oh My Zsh is loaded, in which case,
@@ -109,6 +110,7 @@ alias cp="cp -i"
 alias mv="mv -i"
 alias rm="rm -i"
 alias python="python3"
+alias p="python3"
 alias vim="nvim"
 alias c="clear"
 alias 1d="cd .."  
@@ -118,7 +120,7 @@ alias 4d="cd ..;cd ..;cd ..;cd .."
 alias 5d="cd ..;cd ..;cd ..;cd ..;cd .." 
 alias meow="sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y && sudo apt autoclean"
 alias note="nvim ~/cs/notes/$(date +'%Y-%m-%d').md"
-
-#neovim
-export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
-
+alias ac="ani-cli -v"
+alias ff="fastfetch"
+alias q="exit"
+alias code="codium"

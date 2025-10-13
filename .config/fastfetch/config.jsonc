@@ -1,8 +1,4 @@
-// you should have a nerdfont installed in your terminal
-// https://www.nerdfonts.com/
-// now everything will work smoothly
-
-// here are few cool symbols/icons that you can use 
+// here are few cool symbols/icons
 //  ┌──────┐
 //  └──────┘
 //  ╭──────╮
@@ -15,28 +11,29 @@
 {
   "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
   "logo": {
+    "type":"file",
+    "source":"~/.config/fastfetch/logo",
     "padding": {
       "top": 1,
       "left": 2,
       "right": 2
     },
     "color": {            
-        "1": "white",
-        "2": "green"
+        "1": "red"
     }
   },
   "display": {
     "separator": " 󰄾 ",
     "color": {
-        "keys": "green",    
-        "title": "green"     
+        "keys": "red",    
+        "title": "red"     
     }
   },
   "modules": [
     // Title
     {
       "type": "title",
-      "format": "{#1}╭───────────────────────── {#}{user-name-colored}"
+      "format": "{#1}╭────────────────────────────── {#}{user-name-colored}"
     },
     // System
     {
@@ -128,7 +125,7 @@
     // Footer
     {
       "type": "custom",
-      "format": "{#1}╰─────────────────────────────╯"
+      "format": "{#1}╰────────────────────────────────────╯"
     }
   ]
 }

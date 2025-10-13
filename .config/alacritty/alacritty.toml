@@ -1,27 +1,48 @@
 [general]
 import = [
-    "~/.config/alacritty/themes/themes/sfin.toml"
+    "~/.config/alacritty/themes/themes/tokyo_night.toml"
 ]
 live_config_reload = true
 
+[env]
+TERM = "alacritty"
+
 [window]
-padding = {x=10,y=8}
-opacity = 0.7
+opacity = 0.8
 startup_mode = "Windowed"
 decorations_theme_variant = "Dark"
 dynamic_padding = true
 dynamic_title = false
 
+[window.padding]
+x=2
+y=0
+
 [window.dimensions]
 columns = 100
-lines = 30
+lines = 25
 
 [font]
-size = 16
-normal = {family = "JetBrainsMono Nerd Font", style= "Mono"}
+size = 14
 
-[cursor]
-style ={shape = "Beam", blinking = "Always"}
+[font.bold]
+family = "JetbrainsMono Nerd Font"
+style = "ExtraBold"
+
+[font.bold_italic]
+family = "JetBrainsMono Nerd Font"
+style = "Bold Italic"
+
+[font.italic]
+family = "JetBrainsMono Nerd Font"
+style = "Italic"
+
+[font.normal]
+family = "JetBrainsMono Nerd Font"
+
+[cursor.style]
+shape = "Beam"
+blinking = "Always"
 
 [[keyboard.bindings]]
 key = "Q"
@@ -48,10 +69,9 @@ action = "DecreaseFontSize"
 key = "Minus"
 mods = "Control"
 
-[[keyboard.bindings]]
-action = "DecreaseFontSize"
-key = "Minus"
-mods = "Control"
-
 [mouse]
 hide_when_typing = true
+
+[scrolling]
+history = 100000
+multiplier = 3
