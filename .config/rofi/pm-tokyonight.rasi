@@ -1,0 +1,21 @@
+@import "tokyonight.rasi"
+
+window {
+    width: 200px;
+    location: center;
+    y-offset: 10px;
+    x-offset: 0px;
+}
+
+listview {
+    lines: 7;
+    scrollbar: false;
+}
+
+element {
+    padding: 8px 12px;
+}
+
+element-text {
+    font: "JetBrainsMono Nerd Font 12";
+}

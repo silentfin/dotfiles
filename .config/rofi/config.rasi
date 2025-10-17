@@ -1,0 +1,13 @@
+configuration{
+    modi: ["drun", "window", "run"];
+    icon-theme: "Papirus-Dark";
+    show-icons: true;
+    terminal: "Alacritty";
+    drun-display-format: "{icon} {name}";
+    display-drun: "";
+    display-run: "";
+    display-window: "";
+    disable-history: false;
+    sidebar-mode: false;
+}
+@theme "tokyonight"
