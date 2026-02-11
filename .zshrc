@@ -59,6 +59,7 @@ source /usr/share/fzf/key-bindings.zsh
 alias cp="cp -iv"
 alias mv="mv -iv"
 alias rm="rm -iv"
+alias mkdir="mkdir -p"
 alias python="python3"
 alias p="python3"
 alias vim="nvim"
@@ -97,38 +98,59 @@ alias zshrc='${EDITOR:-nvim} ~/.zshrc'
 alias eniri='${EDITOR:-nvim} ~/.config/niri/config.kdl'
 alias reload='source ~/.zshrc'
 
-. "$HOME/.cargo/env"
+alias tldrf="tldr --list | fzf --preview 'tldr --color always {}' --preview-window=bottom:70%"
+alias af="alias | fzf | sed 's/=.*//' | xargs -I {} zsh -ic {}"
+alias envf="env | sort | fzf --preview 'echo {}' --preview-window down:4:wrap"
 
-. "$HOME/.local/bin/env"
+# Ctrl+R does this but better
+# alias hf="eval \$(history | fzf --tac --no-sort | sed 's/^[ ]*[0-9]*[ ]*//')"
 
-eval "$(zoxide init zsh)"
-
+# Search all packages
+alias yayf="yay -Slq | fzf --preview 'yay -Si {} | bat --color=always --style=numbers --language=yaml' --preview-window=bottom:60%:wrap"
+# Search installed packages
+alias yayq="yay -Qq | fzf --preview 'yay -Qi {} | bat --color=always --style=numbers --language=yaml' --preview-window=bottom:60%:wrap"
+# Remove installed packages
+alias yayr="yay -Qq | fzf --multi --preview 'yay -Qi {} | bat --color=always --style=numbers --language=yaml' --preview-window=bottom:60%:wrap | xargs -ro yay -Rns"
 
 # Fuzzy kill process
-fkill() {
+killf() {
   local pid
   pid=$(ps -ef | sed 1d | fzf -m | awk '{print $2}')
   [[ -n "$pid" ]] && echo "$pid" | xargs kill -${1:-9}
 }
 
-# fuzzy history search
-hf() {
-  eval $(history | fzf --tac --no-sort | sed 's/^[ ]*[0-9]*[ ]*//')
-}
-
-# fuzzy search aliases
-af() {
-  alias | fzf | sed 's/=.*//' | xargs -I {} zsh -ic {}
-}
-
-# Fuzzy environment variables
-fenv() {
-  env | sort | fzf --preview 'echo {}' --preview-window down:3:wrap
-}
-
 # Backup file with timestamp
 backup() {
   cp "$1"{,.backup-$(date +%Y%m%d-%H%M%S)}
+}
+
+# make directory and cd to it
+mkcd() {
+  mkdir -p "$1" && cd "$1"
+}
+
+# fuzzy find directories and cd to it 
+FD_EXCLUDES=(-E .git -E node_modules -E .cache -E .npm -E __pycache__ -E .venv)
+cdf() {
+  if [[ -n "$1" && -d "$1" ]]; then
+    cd "$1"
+  else
+    local dir
+    dir=$(fd --type d --hidden $FD_EXCLUDES | fzf --query="$1" --preview 'eza --tree --icons --color=always --level=2 --group-directories-first {}')
+    [[ -n "$dir" ]] && cd "$dir"
+  fi
+}
+
+
+# fuzzy find files and edit them in nvim
+fo() {
+  if [[ -n "$1" && -f "$1" ]]; then
+    ${EDITOR:-nvim} "$1"
+  else
+    local file
+    file=$(fd --type f | fzf --query="$1" --preview 'bat --color=always --style=header,grid --line-range :300 {}')
+    [[ -n "$file" ]] && ${EDITOR:-nvim} "$file"
+  fi
 }
 
 # notes
@@ -225,47 +247,11 @@ extract() {
   echo " Extracted to: $name/"
 }
 
-# fuzzy find directories and cd to it 
-cdd() {
-  if [[ -n "$1" && -d "$1" ]]; then
-    cd "$1"
-  else
-    local dir
-    dir=$(fd --type d | fzf --query="$1" --preview 'tree -C {} | head -200')
-    [[ -n "$dir" ]] && cd "$dir"
-  fi
-}
+. "$HOME/.cargo/env"
+. "$HOME/.local/bin/env"
 
+# resets cursor to I-beam after closing nvim or any other
+precmd() { echo -ne '\e[5 q' }
 
-# fuzzy find files and edit them in nvim
-fo() {
-  if [[ -n "$1" && -f "$1" ]]; then
-    ${EDITOR:-nvim} "$1"
-  else
-    local file
-    file=$(fd --type f | fzf --query="$1" --preview 'bat --color=always --style=header,grid --line-range :300 {}')
-    [[ -n "$file" ]] && ${EDITOR:-nvim} "$file"
-  fi
-}
-
-# Fuzzy ripgrep - search CONTENT, open at line 
-frg() {
-  local file line
-  read -r file line <<< $(
-    rg --color=always --line-number --no-heading --smart-case "${*:-}" |
-    fzf --ansi \
-        --delimiter : \
-        --preview 'bat --color=always {1} --highlight-line {2}' \
-        --preview-window 'up,60%,border-bottom,+{2}+3/3,~3' |
-    awk -F: '{print $1, $2}'
-  )
-  [[ -n "$file" ]] && ${EDITOR:-nvim} "$file" "+${line:-1}"
-}
-
-# make directory and cd to it
-mkcd() {
-  mkdir -p "$1" && cd "$1"
-}
-
-
+eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
