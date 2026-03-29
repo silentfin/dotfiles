@@ -1,4 +1,4 @@
-autoload -Uz compinit 
+autoload -Uz compinit
 compinit
 autoload -Uz colors && colors
 eval "$(dircolors)"
@@ -51,8 +51,8 @@ setopt HIST_IGNORE_DUPS
 
 
 # plugins
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/fzf/key-bindings.zsh
 
 # aliases
@@ -64,11 +64,11 @@ alias python="python3"
 alias p="python3"
 alias vim="nvim"
 alias c="clear"
-alias 1d="cd .."  
-alias 2d="cd ..;cd .."  
-alias 3d="cd ..;cd ..;cd .."  
-alias 4d="cd ..;cd ..;cd ..;cd .."  
-alias 5d="cd ..;cd ..;cd ..;cd ..;cd .." 
+alias 1d="cd .."
+alias 2d="cd ..;cd .."
+alias 3d="cd ..;cd ..;cd .."
+alias 4d="cd ..;cd ..;cd ..;cd .."
+alias 5d="cd ..;cd ..;cd ..;cd ..;cd .."
 # alias meow="sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y && sudo apt autoclean"
 alias sss="~/sss.sh"
 # alias note="nvim ~/cs/notes/$(date +'%Y-%m-%d').md"
@@ -106,9 +106,9 @@ alias envf="env | sort | fzf --preview 'echo {}' --preview-window down:4:wrap"
 # alias hf="eval \$(history | fzf --tac --no-sort | sed 's/^[ ]*[0-9]*[ ]*//')"
 
 # Search all packages
-alias yayf="yay -Slq | fzf --preview 'yay -Si {} | bat --color=always --style=numbers --language=yaml' --preview-window=bottom:60%:wrap"
+alias yays="yay -Slq | fzf --preview 'yay -Si {} | bat --color=always --style=numbers --language=yaml' --preview-window=bottom:60%:wrap"
 # Search installed packages
-alias yayq="yay -Qq | fzf --preview 'yay -Qi {} | bat --color=always --style=numbers --language=yaml' --preview-window=bottom:60%:wrap"
+alias yayf="yay -Qq | fzf --preview 'yay -Qi {} | bat --color=always --style=numbers --language=yaml' --preview-window=bottom:60%:wrap"
 # Remove installed packages
 alias yayr="yay -Qq | fzf --multi --preview 'yay -Qi {} | bat --color=always --style=numbers --language=yaml' --preview-window=bottom:60%:wrap | xargs -ro yay -Rns"
 
@@ -124,12 +124,22 @@ backup() {
   cp "$1"{,.backup-$(date +%Y%m%d-%H%M%S)}
 }
 
+# copy file contents
+cpf() {
+  bat "$1" | wl-copy
+}
+
+# copy path of file otherwise pwd
+cpa() {
+  readlink -f "${1:-.}" | wl-copy
+}
+
 # make directory and cd to it
 mkcd() {
   mkdir -p "$1" && cd "$1"
 }
 
-# fuzzy find directories and cd to it 
+# fuzzy find directories and cd to it
 FD_EXCLUDES=(-E .git -E node_modules -E .cache -E .npm -E __pycache__ -E .venv)
 cdf() {
   if [[ -n "$1" && -d "$1" ]]; then
@@ -157,7 +167,7 @@ fo() {
 note() {
   local note_file=~/cs/notes/$(date +'%Y-%m-%d').md
   local timestamp=$(date +'%H:%M')
-  
+
   # Create file with header if it doesn't exist
   if [ ! -f "$note_file" ]; then
     cat > "$note_file" << EOF
@@ -172,7 +182,7 @@ EOF
     # File exists, add new timestamp entry
     echo -e "\n## $timestamp\n" >> "$note_file"
   fi
-  
+
   # Open at the end of file
   ${EDITOR:-nvim} + "$note_file"
 }
@@ -184,7 +194,7 @@ peek() {
     echo "'$1' is not a valid file"
     return 1
   fi
-  
+
   case "$1" in
     *.zip)     unzip -l "$1" ;;
     *.tar.gz)  tar tzf "$1" ;;
@@ -208,22 +218,22 @@ extract() {
     echo "'$1' is not a valid file"
     return 1
   fi
-  
+
   # Get filename without extension
   local name="${1%.*}"
-  
+
   # Handle double extensions (.tar.gz, .tar.bz2, etc.)
   case "$1" in
-    *.tar.gz|*.tar.bz2|*.tar.xz) 
+    *.tar.gz|*.tar.bz2|*.tar.xz)
       name="${1%.tar.*}"
       ;;
   esac
-  
+
   # Create extraction directory
   mkdir -p "$name"
-  
+
   echo "Extracting '$1' to '$name/'..."
-  
+
   case "$1" in
     *.tar.bz2)   tar xjf "$1" -C "$name" ;;
     *.tar.gz)    tar xzf "$1" -C "$name" ;;
@@ -237,13 +247,13 @@ extract() {
     *.rar)       unrar x "$1" "$name/" ;;
     *.7z)        7z x "$1" -o"$name" ;;
     *.Z)         uncompress -c "$1" > "$name/${1%.Z}" ;;
-    *)           
+    *)
       echo "'$1' cannot be extracted - unknown format"
       rmdir "$name" 2>/dev/null  # Clean up empty dir
       return 1
       ;;
   esac
-  
+
   echo " Extracted to: $name/"
 }
 

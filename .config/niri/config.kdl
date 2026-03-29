@@ -1,16 +1,10 @@
-// This config is in the KDL format: https://kdl.dev
-// "/-" comments out the following node.
-// Check the wiki for a full description of the configuration:
-// https://yalter.github.io/niri/Configuration:-Introduction
-
-// Input device configuration.
-// Find the full list of options on the wiki:
-// https://yalter.github.io/niri/Configuration:-Input
 input {
     keyboard {
         xkb {
         }
         // numlock
+	// repeat-delay 200
+	// repear-rate 40
     }
     touchpad {
 	// off
@@ -75,8 +69,18 @@ output "eDP-1" {
     // so to put another output directly adjacent to it on the right, set its x to 1920.
     // If the position is unset or results in an overlap, the output is instead placed
     // automatically.
-    position x=1280 y=0
+    position x=0 y=0
 }
+
+// output "HDMI-A-1" {
+//     mode "1920x1080@143.981"
+//     scale 1
+//     transform "normal"
+//     // backdrop-color "#001100"
+//     position x=0 y=0
+//     // focus-at-startup
+// }
+
 
 layout {
     gaps 4
@@ -91,6 +95,7 @@ layout {
     focus-ring {
         width 2
         active-color "#7aa2f7"
+        // active-color "#9ece6a"
         inactive-color "#414868"
     }
 
@@ -128,9 +133,12 @@ layer-rule {
 
 // This line starts waybar, a commonly used bar for Wayland compositors.
 // spawn-at-startup "waybar"
+spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
+
 
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
 // spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"
+spawn-sh-at-startup "swaybg -i ~/Pictures/current-wallpapers/wallhaven-q2yv1l.jpg"
 
 hotkey-overlay {
     skip-at-startup
@@ -146,7 +154,9 @@ window-rule {
     match app-id=r#"^gnome-calculator$"#
     match app-id=r#"^galculator$"#
     match app-id=r#"^blueman-manager$"#
+    match app-id=r#"^com.gabm.satty$"#
     match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+    match app-id="nemo" title="Properties$"
     open-floating true
 }
 
@@ -165,7 +175,7 @@ window-rule {
     default-column-width {proportion 0.5;}
 }
 
-// full screen
+// maximized screen
 window-rule {
     match app-id="firefox"
     match app-id="discord"
@@ -201,7 +211,7 @@ window-rule {
 }
 
 binds {
-    // === System & Overview ===
+    // System & Overview
     Mod+O { spawn "niri" "msg" "action" "toggle-overview"; }
     Mod+Tab repeat=false { toggle-overview; }
     // Mod+O repeat=false { toggle-overview; }
@@ -211,10 +221,10 @@ binds {
     // Mod+D hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
     // Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
 
-    // === Application Launchers ===
+    // Application Launchers
     Mod+E hotkey-overlay-title="Open Nemo" { spawn "nemo"; }
     Mod+T hotkey-overlay-title="Open Terminal: Alacritty" { spawn "alacritty"; }
-    Mod+Shift+T hotkey-overlay-title="Open Terminal: Ghostty" { spawn "ghostty"; }
+    // Mod+Shift+T hotkey-overlay-title="Open Terminal: Ghostty" { spawn "ghostty"; }
     // Mod+Return hotkey-overlay-title="Open a Terminal: foot" { spawn "foot";pl }
     Mod+Return hotkey-overlay-title="Open a Terminal: Kitty" { spawn "kitty"; }
     Mod+D hotkey-overlay-title="Application Launcher" {
@@ -235,7 +245,7 @@ binds {
     Mod+N hotkey-overlay-title="Notification Center" { spawn "dms" "ipc" "call" "notifications" "toggle"; }
     Mod+Shift+N hotkey-overlay-title="Notepad" { spawn "dms" "ipc" "call" "notepad" "toggle"; }
 
-    // === Security ===
+    // Security
     Mod+Alt+L hotkey-overlay-title="Lock Screen" {
         spawn "dms" "ipc" "call" "lock" "lock";
     }
@@ -246,13 +256,8 @@ binds {
     Ctrl+Alt+Delete hotkey-overlay-title="Task Manager" {
         spawn "dms" "ipc" "call" "processlist" "toggle";
     }
-    
-    // fix this its not working properly
-    XF86PowerOff {
-        spawn "dms" "ipc" "call" "powermenu" "toggle";
-	}
 
-    // === Audio Controls ===
+    // Audio Controls
     XF86AudioRaiseVolume allow-when-locked=true {
         spawn "dms" "ipc" "call" "audio" "increment" "3";
     }
@@ -266,7 +271,7 @@ binds {
         spawn "dms" "ipc" "call" "audio" "micmute";
     }
 
-    // === Brightness Controls ===
+    // Brightness Controls
     XF86MonBrightnessUp allow-when-locked=true {
        spawn "dms" "ipc" "call" "brightness" "increment" "5" "";
     }
@@ -274,7 +279,7 @@ binds {
        spawn "dms" "ipc" "call" "brightness" "decrement" "5" "";
     }
 
-    // === Window Management ===
+    // Window Management
     Mod+Q repeat=true { close-window; }
     Mod+F { maximize-column; }
     Mod+Shift+F { fullscreen-window; }
@@ -282,7 +287,7 @@ binds {
     // Mod+Shift+V { switch-focus-between-floating-and-tiling; }
     Mod+W { toggle-column-tabbed-display; }
 
-    // === Focus Navigation ===
+    // Focus Navigation
     Mod+Left  { focus-column-left; }
     Mod+Down  { focus-window-down; }
     Mod+Up    { focus-window-up; }
@@ -292,7 +297,7 @@ binds {
     Mod+K     { focus-window-up; }
     Mod+L     { focus-column-right; }
 
-    // === Window Movement ===
+    // Window Movement
     Mod+Shift+Left  { move-column-left; }
     Mod+Shift+Down  { move-window-down; }
     Mod+Shift+Up    { move-window-up; }
@@ -302,13 +307,13 @@ binds {
     Mod+Shift+K     { move-window-up; }
     Mod+Shift+L     { move-column-right; }
 
-    // === Column Navigation ===
+    // Column Navigation
     Mod+Home { focus-column-first; }
     Mod+End  { focus-column-last; }
     Mod+Ctrl+Home { move-column-to-first; }
     Mod+Ctrl+End  { move-column-to-last; }
 
-    // === Monitor Navigation ===
+    // Monitor Navigation
     Mod+Ctrl+Left  { focus-monitor-left; }
     //Mod+Ctrl+Down  { focus-monitor-down; }
     //Mod+Ctrl+Up    { focus-monitor-up; }
@@ -318,7 +323,7 @@ binds {
     Mod+Ctrl+K     { focus-monitor-up; }
     Mod+Ctrl+L     { focus-monitor-right; }
 
-    // === Move to Monitor ===
+    // Move to Monitor
     Mod+Shift+Ctrl+Left  { move-column-to-monitor-left; }
     Mod+Shift+Ctrl+Down  { move-column-to-monitor-down; }
     Mod+Shift+Ctrl+Up    { move-column-to-monitor-up; }
@@ -328,7 +333,7 @@ binds {
     Mod+Shift+Ctrl+K     { move-column-to-monitor-up; }
     Mod+Shift+Ctrl+L     { move-column-to-monitor-right; }
 
-    // === Workspace Navigation ===
+    // Workspace Navigation
     Mod+Page_Down      { focus-workspace-down; }
     Mod+Page_Up        { focus-workspace-up; }
     Mod+U              { focus-workspace-down; }
@@ -338,13 +343,13 @@ binds {
     Mod+Ctrl+U         { move-column-to-workspace-down; }
     Mod+Ctrl+I         { move-column-to-workspace-up; }
 
-    // === Move Workspaces ===
+    // Move Workspaces
     Mod+Shift+Page_Down { move-workspace-down; }
     Mod+Shift+Page_Up   { move-workspace-up; }
     Mod+Shift+U         { move-workspace-down; }
     Mod+Shift+I         { move-workspace-up; }
 
-    // === Mouse Wheel Navigation ===
+    // Mouse Wheel Navigation
     Mod+WheelScrollDown      cooldown-ms=150 { focus-workspace-down; }
     Mod+WheelScrollUp        cooldown-ms=150 { focus-workspace-up; }
     Mod+Ctrl+WheelScrollDown cooldown-ms=150 { move-column-to-workspace-down; }
@@ -360,7 +365,7 @@ binds {
     Mod+Ctrl+Shift+WheelScrollDown { move-column-right; }
     Mod+Ctrl+Shift+WheelScrollUp   { move-column-left; }
 
-    // === Numbered Workspaces ===
+    // Numbered Workspaces
     Mod+1 { focus-workspace 1; }
     Mod+2 { focus-workspace 2; }
     Mod+3 { focus-workspace 3; }
@@ -371,7 +376,7 @@ binds {
     Mod+8 { focus-workspace 8; }
     Mod+9 { focus-workspace 9; }
 
-    // === Move to Numbered Workspaces ===
+    // Move to Numbered Workspaces
     Mod+Shift+1 { move-column-to-workspace 1; }
     Mod+Shift+2 { move-column-to-workspace 2; }
     Mod+Shift+3 { move-column-to-workspace 3; }
@@ -382,12 +387,12 @@ binds {
     Mod+Shift+8 { move-column-to-workspace 8; }
     Mod+Shift+9 { move-column-to-workspace 9; }
 
-    // === Column Management ===
+    // Column Management
     Mod+BracketLeft  { consume-or-expel-window-left; }
     Mod+BracketRight { consume-or-expel-window-right; }
     Mod+Period { expel-window-from-column; }
 
-    // === Sizing & Layout ===
+    // Sizing & Layout
     Mod+R { switch-preset-column-width; }
     Mod+Shift+R { switch-preset-window-height; }
     Mod+Ctrl+R { reset-window-height; }
@@ -395,20 +400,23 @@ binds {
     Mod+C { center-column; }
     Mod+Ctrl+C { center-visible-columns; }
 
-    // === Manual Sizing ===
+    // Manual Sizing
     Mod+Minus { set-column-width "-10%"; }
     Mod+Equal { set-column-width "+10%"; }
     Mod+Shift+Minus { set-window-height "-10%"; }
     Mod+Shift+Equal { set-window-height "+10%"; }
 
-    // === Screenshots ===
+    // Screenshots
+    Mod+Shift+S {spawn-sh "$HOME/.config/niri/scripts/screenshot-region.sh";}
+    Mod+Shift+C {spawn-sh "$HOME/.config/niri/scripts/ocr.sh";}
     XF86Launch1 { screenshot; }
     Ctrl+XF86Launch1 { screenshot-screen; }
     Alt+XF86Launch1 { screenshot-window; }
     Print { screenshot; }
     Ctrl+Print { screenshot-screen; }
     Alt+Print { screenshot-window; }
-    // === System Controls ===
+
+    // System Controls
     Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
     Mod+Shift+P { power-off-monitors; }
 
@@ -417,14 +425,19 @@ binds {
     Mod+TouchpadScrollUp   cooldown-ms=150 { focus-workspace-up; }
     Mod+TouchpadScrollRight cooldown-ms=50 { focus-column-right; }
     Mod+TouchpadScrollLeft cooldown-ms=50 { focus-column-left; }
+
+    // custom scripts
+    Mod+A {spawn-sh "$HOME/.config/niri/scripts/type.sh";}
+    Mod+Shift+A { spawn "bash" "-c" "kill $(cat /tmp/wtype.pid) 2>/dev/null"; }
 }
 
 overview {
     backdrop-color "#212121"
-//    zoom 0.25
+    zoom 0.25
 //    workspace-shadow {
 //	off
 //    }
 }
 
 include "dms/cursor.kdl"
+include "dms/colors.kdl"
