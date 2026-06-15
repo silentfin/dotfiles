@@ -51,8 +51,8 @@ setopt HIST_IGNORE_DUPS
 
 
 # plugins
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/fzf/key-bindings.zsh
 
 # aliases
@@ -77,6 +77,7 @@ alias ff="fastfetch"
 alias ffa="fastfetch --config ~/.config/fastfetch/old.jsonc"
 alias q="exit"
 alias code="codium"
+alias zed="zeditor"
 alias cd="z"
 alias history='fc -l 1'
 alias h="history"
@@ -106,11 +107,14 @@ alias envf="env | sort | fzf --preview 'echo {}' --preview-window down:4:wrap"
 # alias hf="eval \$(history | fzf --tac --no-sort | sed 's/^[ ]*[0-9]*[ ]*//')"
 
 # Search all packages
-alias yays="yay -Slq | fzf --preview 'yay -Si {} | bat --color=always --style=numbers --language=yaml' --preview-window=bottom:60%:wrap"
+alias yays="yay -Slq | fzf --preview 'yay -Si {} | bat --color=always --style=numbers --language=yaml' --preview-window=bottom:70%:wrap"
 # Search installed packages
-alias yayf="yay -Qq | fzf --preview 'yay -Qi {} | bat --color=always --style=numbers --language=yaml' --preview-window=bottom:60%:wrap"
+alias yayf="yay -Qq | fzf --preview 'yay -Qi {} | bat --color=always --style=numbers --language=yaml' --preview-window=bottom:70%:wrap"
 # Remove installed packages
-alias yayr="yay -Qq | fzf --multi --preview 'yay -Qi {} | bat --color=always --style=numbers --language=yaml' --preview-window=bottom:60%:wrap | xargs -ro yay -Rns"
+alias yayr="yay -Qq | fzf --multi --preview 'yay -Qi {} | bat --color=always --style=numbers --language=yaml' --preview-window=bottom:70%:wrap | xargs -ro yay -Rns"
+
+# rank mirrrors
+alias mirrors='sudo cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist."$(date +%s)" && sudo reflector -l 10 -a 12 -p https --sort rate --verbose --save /etc/pacman.d/mirrorlist && eos-rankmirrors'
 
 # Fuzzy kill process
 killf() {

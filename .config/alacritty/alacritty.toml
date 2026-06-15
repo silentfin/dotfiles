@@ -8,14 +8,14 @@ live_config_reload = true
 TERM = "alacritty"
 
 [window]
-opacity = 1.0
+opacity = 0.6
 startup_mode = "Windowed"
 decorations_theme_variant = "Dark"
 dynamic_padding = true
 dynamic_title = false
 
 [window.padding]
-x=4
+x=2
 y=2
 
 [window.dimensions]
@@ -25,20 +25,24 @@ lines = 25
 [font]
 size = 14
 
-[font.bold]
-family = "JetBrainsMono Nerd Font"
-style = "ExtraBold"
-
-[font.bold_italic]
-family = "JetBrainsMono Nerd Font"
-style = "Bold Italic"
-
-[font.italic]
-family = "JetBrainsMono Nerd Font"
-style = "Italic"
-
 [font.normal]
 family = "JetBrainsMono Nerd Font"
+style = "Regular"
+
+# [font.bold]
+# family = "JetBrainsMono Nerd Font"
+# style = "ExtraBold"
+#
+# [font.bold_italic]
+# family = "JetBrainsMono Nerd Font"
+# style = "Bold Italic"
+#
+# [font.italic]
+# family = "JetBrainsMono Nerd Font"
+# style = "Italic"
+#
+# [font.normal]
+# family = "JetBrainsMono Nerd Font"
 
 [cursor.style]
 shape = "Beam"
@@ -75,4 +79,3 @@ hide_when_typing = true
 [scrolling]
 history = 100000
 multiplier = 3
-

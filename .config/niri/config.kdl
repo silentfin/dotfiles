@@ -138,7 +138,7 @@ spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
 
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
 // spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"
-spawn-sh-at-startup "swaybg -i ~/Pictures/current-wallpapers/wallhaven-q2yv1l.jpg"
+spawn-sh-at-startup "swaybg -i ~/Pictures/current-wallpapers/wallhaven-gpy9e7.png"
 
 hotkey-overlay {
     skip-at-startup
@@ -149,8 +149,9 @@ screenshot-path "~/Pictures/screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 animations {
 }
 
-// always floating 
+// always floating
 window-rule {
+    match app-id=r#"^org.gnome.Nautilus$"#
     match app-id=r#"^gnome-calculator$"#
     match app-id=r#"^galculator$"#
     match app-id=r#"^blueman-manager$"#
@@ -161,10 +162,10 @@ window-rule {
 }
 
 // never float
-window-rule {
-    match app-id="faugus-launcher"
-    open-floating false
-}
+// window-rule {
+//     match app-id="faugus-launcher"
+//     open-floating false
+// }
 
 // half screen
 window-rule {
@@ -178,12 +179,22 @@ window-rule {
 // maximized screen
 window-rule {
     match app-id="firefox"
+    match app-id="zen"
+    match app-id="dev.zed.Zed"
     match app-id="discord"
     match app-id="google-chrome"
     match app-id="brave-browser"
     match app-id="com.github.th_ch.youtube_music"
     match app-id="ONLYOFFICE"
     open-maximized true
+}
+window-rule {
+    match app-id="^Alacritty$"
+    match app-id="com.mitchellh.ghostty"
+    match app-id="^kitty$"
+    background-effect {
+        blur true
+    }
 }
 
 /-window-rule {
@@ -239,9 +250,9 @@ binds {
     Mod+Comma hotkey-overlay-title="Settings" {
         spawn "dms" "ipc" "call" "settings" "toggle";
     }
-    Mod+Y hotkey-overlay-title="Browse Wallpapers" {
-        spawn "dms" "ipc" "call" "dankdash" "wallpaper";
-    }
+    // Mod+Y hotkey-overlay-title="Browse Wallpapers" {
+    //     spawn "dms" "ipc" "call" "dankdash" "wallpaper";
+    // }
     Mod+N hotkey-overlay-title="Notification Center" { spawn "dms" "ipc" "call" "notifications" "toggle"; }
     Mod+Shift+N hotkey-overlay-title="Notepad" { spawn "dms" "ipc" "call" "notepad" "toggle"; }
 
@@ -425,6 +436,9 @@ binds {
     Mod+TouchpadScrollUp   cooldown-ms=150 { focus-workspace-up; }
     Mod+TouchpadScrollRight cooldown-ms=50 { focus-column-right; }
     Mod+TouchpadScrollLeft cooldown-ms=50 { focus-column-left; }
+
+    //wallpapercarousel
+    Mod+Y { spawn "dms" "ipc" "wallpaperCarousel" "toggle"; }
 
     // custom scripts
     Mod+A {spawn-sh "$HOME/.config/niri/scripts/type.sh";}
