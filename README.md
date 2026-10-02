@@ -1,13 +1,7 @@
 # dotfiles
-I use EndeavourOS with Niri & DankMaterialShell.
+I use EndeavourOS with Niri & Noctalia.
 
-- **Terminal**: Alacritty, Kitty
-- **Editor**: Zed, Neovim
-- **Font**: JetBrainsMono Nerd Font
+## Screenshots
+![niri-7](Pictures/screenshots/niri-7.png)
 
-## current niri config
-![niri-4](Pictures/screenshots/niri-4.png)
-![niri-5](Pictures/screenshots/niri-5.png)
-![niri-6](Pictures/screenshots/niri-6.png)
-
-### my previous x11 branch [here](https://github.com/silentfin/dotfiles/tree/x11)
+### my previous LinuxMint config [here](https://github.com/silentfin/dotfiles/tree/x11)
