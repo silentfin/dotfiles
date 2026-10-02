@@ -1,0 +1,485 @@
+[bar.default]
+capsule = true
+capsule_border = "on_surface"
+capsule_opacity = 0.4999999888241291
+capsule_padding = 10.0
+capsule_radius = 0
+center = [ "clock", "audio_visualizer", "bar" ]
+concave_edge_corners = false
+end = [ "group:g4", "group:g2", "group:g1", "group:g3" ]
+margin_ends = 0
+padding = 0
+radius = 0
+reserve_space = true
+scale = 1.1500000096857548
+smart_auto_hide = false
+start = [ "cat_audio", "workspaces", "active_window" ]
+
+    [bar.default.dead_zone.actions]
+    left = "panel-toggle control-center home"
+    middle = "settings-open"
+    scroll_down = "workspace-switch next"
+    scroll_up = "workspace-switch prev"
+
+    [[bar.default.capsule_group]]
+    accordion = false
+    accordion_direction = "end"
+    border = "on_surface"
+    enabled = true
+    fill = "surface_variant"
+    id = "g1"
+    members = [ "volume", "brightness" ]
+    opacity = 0.5
+    padding = 10.0
+    radius = 0.0
+
+    [[bar.default.capsule_group]]
+    accordion = false
+    accordion_direction = "end"
+    border = "on_surface"
+    enabled = true
+    fill = "surface_variant"
+    foreground = "secondary"
+    id = "g2"
+    members = [ "network", "bluetooth" ]
+    opacity = 0.5
+    padding = 10.0
+    radius = 0.0
+
+    [[bar.default.capsule_group]]
+    accordion = false
+    accordion_direction = "end"
+    border = "on_surface"
+    enabled = true
+    fill = "surface_variant"
+    id = "g3"
+    members = [ "cpu", "ram" ]
+    opacity = 0.5
+    padding = 10.0
+    radius = 0.0
+
+    [[bar.default.capsule_group]]
+    accordion = false
+    accordion_direction = "end"
+    border = "on_surface"
+    enabled = true
+    fill = "surface_variant"
+    id = "g4"
+    members = [ "tray", "notifications" ]
+    opacity = 0.5
+    padding = 10.0
+    radius = 0.0
+
+[brightness]
+enable_ddcutil = true
+sync_all_monitors = true
+
+[calendar]
+
+[control_center]
+width = 850
+
+    [control_center.calendar]
+    show_events_card = false
+
+[desktop_widgets]
+schema_version = 2
+widget_order = []
+
+    [desktop_widgets.grid]
+    cell_size = 16
+    major_interval = 4
+    visible = true
+
+    [desktop_widgets.widget]
+
+[hot_corners]
+enabled = true
+
+
+[lockscreen_widgets]
+enabled = true
+schema_version = 2
+widget_order = [
+    "lockscreen-login-box@DP-2",
+    "lockscreen-widget-0000000000000001",
+    "lockscreen-widget-0000000000000004",
+    "lockscreen-widget-0000000000000006",
+    "lockscreen-widget-0000000000000007",
+    "lockscreen-widget-0000000000000008",
+    "lockscreen-widget-0000000000000009"
+]
+
+    [lockscreen_widgets.grid]
+    cell_size = 16
+    major_interval = 4
+    visible = true
+
+    [lockscreen_widgets.widget."lockscreen-login-box@DP-2"]
+    box_height = 128.0
+    box_width = 784.0
+    cx = 1280.0
+    cy = 1228.0
+    output = "DP-2"
+    placement_height = 1440.0
+    placement_width = 2560.0
+    rotation = 0.0
+    type = "login_box"
+
+        [lockscreen_widgets.widget."lockscreen-login-box@DP-2".settings]
+        background_color = "surface_variant"
+        background_opacity = 1.0
+        background_radius = 0.0
+        center_password_text = false
+        input_opacity = 1.0
+        input_radius = 6.0
+        layout = "regular"
+        show_caps_lock = true
+        show_keyboard_layout = true
+        show_login_button = true
+        show_media = false
+        show_session_buttons = true
+        show_unlock_hint = true
+        show_weather = false
+
+    [lockscreen_widgets.widget.lockscreen-widget-0000000000000001]
+    box_height = 384.0
+    box_width = 384.0
+    cx = 256.0
+    cy = 224.0
+    output = "DP-2"
+    placement_height = 1440.0
+    placement_width = 2560.0
+    rotation = 0.0
+    type = "calendar"
+
+        [lockscreen_widgets.widget.lockscreen-widget-0000000000000001.settings]
+        background_color = "surface"
+        show_events = false
+        show_week_numbers = false
+
+    [lockscreen_widgets.widget.lockscreen-widget-0000000000000004]
+    box_height = 160.0
+    box_width = 368.0
+    cx = 2344.0
+    cy = 96.0
+    output = "DP-2"
+    placement_height = 1440.0
+    placement_width = 2560.0
+    rotation = -0.0
+    type = "media_player"
+
+        [lockscreen_widgets.widget.lockscreen-widget-0000000000000004.settings]
+        background = true
+        hide_when_no_media = true
+        layout = "horizontal"
+
+    [lockscreen_widgets.widget.lockscreen-widget-0000000000000006]
+    box_height = 0.0
+    box_width = 0.0
+    cx = 1856.0
+    cy = 1228.0
+    output = "DP-2"
+    placement_height = 1440.0
+    placement_width = 2560.0
+    rotation = 0.0
+    type = "fancy_audio_visualizer"
+
+        [lockscreen_widgets.widget.lockscreen-widget-0000000000000006.settings]
+        background = false
+        primary_color = "tertiary"
+        secondary_color = "error"
+
+    [lockscreen_widgets.widget.lockscreen-widget-0000000000000007]
+    box_height = 0.0
+    box_width = 0.0
+    cx = 694.0
+    cy = 1228.0
+    output = "DP-2"
+    placement_height = 1440.0
+    placement_width = 2560.0
+    rotation = 0.0
+    type = "fancy_audio_visualizer"
+
+        [lockscreen_widgets.widget.lockscreen-widget-0000000000000007.settings]
+        background = false
+        primary_color = "on_primary"
+        secondary_color = "on_surface"
+
+    [lockscreen_widgets.widget.lockscreen-widget-0000000000000008]
+    box_height = 384.0
+    box_width = 1024.0
+    cx = 1280.0
+    cy = 256.0
+    output = "DP-2"
+    placement_height = 1440.0
+    placement_width = 2560.0
+    rotation = 0.0
+    type = "clock"
+
+        [lockscreen_widgets.widget.lockscreen-widget-0000000000000008.settings]
+        background = false
+        color = "on_surface_variant"
+        format = "{:%H:%M:%S}"
+
+    [lockscreen_widgets.widget.lockscreen-widget-0000000000000009]
+    box_height = 128.0
+    box_width = 816.0
+    cx = 1280.0
+    cy = 1040.0
+    output = "DP-2"
+    placement_height = 1440.0
+    placement_width = 2560.0
+    rotation = -0.0
+    type = "audio_visualizer"
+
+        [lockscreen_widgets.widget.lockscreen-widget-0000000000000009.settings]
+        background = false
+        background_opacity = 0.0
+        background_padding = 0
+        background_radius = 0
+        bands = 128
+        centered = false
+        color_1 = "secondary"
+        color_2 = "tertiary"
+        mirrored = true
+        reversed = false
+        show_when_idle = true
+
+[osd]
+position = "bottom_center"
+
+[plugin_settings."ahmedhossamdev/timezone-hub"]
+show_date_in_bar = false
+
+[plugin_settings."icefish/phone-connect"]
+state_update_interval = 10
+
+[plugin_settings."noctalia/mpvpaper"]
+video_directory = "/home/silent/Pictures/favs"
+
+[plugin_settings."nomadcxx/gslapper"]
+fade = true
+fps_cap = "60"
+picker_placement = "floating"
+picker_position = "center"
+video_directory = "/home/silent/Pictures/favs"
+
+[plugins]
+auto_update = "all"
+enabled = [ "noctalia/bongocat", "noctalia/timer", "noctalia/world_clock", "noctalia/notes" ]
+
+    [[plugins.source]]
+    kind = "git"
+    location = "https://github.com/noctalia-dev/official-plugins"
+    name = "official"
+
+    [[plugins.source]]
+    kind = "git"
+    location = "https://github.com/noctalia-dev/community-plugins"
+    name = "community"
+
+[shell]
+corner_radius_scale = 0.0
+font_family = "JetBrainsMono NF"
+niri_overview_type_to_launch_enabled = true
+polkit_agent = true
+
+    [shell.animation]
+    speed = 2.0000000298023224
+
+    [shell.launcher]
+    categories = false
+    show_app_actions = true
+
+        [shell.launcher.providers.emoji]
+        global = true
+
+    [shell.panel]
+    control_center_placement = "floating"
+    session_placement = "floating"
+    session_position = "center"
+    wallpaper_position = "center"
+
+    [[shell.session.actions]]
+    action = "reboot"
+    countdown_seconds = 0.0
+    enabled = true
+    shortcut = "r"
+    variant = "default"
+
+    [[shell.session.actions]]
+    action = "lock"
+    countdown_seconds = 0.0
+    enabled = true
+    shortcut = "l"
+    variant = "default"
+
+    [[shell.session.actions]]
+    action = "logout"
+    countdown_seconds = 0.0
+    enabled = true
+    shortcut = "x"
+    variant = "default"
+
+    [[shell.session.actions]]
+    action = "lock_and_suspend"
+    countdown_seconds = 0.0
+    enabled = false
+    shortcut = "s"
+    variant = "default"
+
+    [[shell.session.actions]]
+    action = "shutdown"
+    countdown_seconds = 0.0
+    enabled = true
+    shortcut = "p"
+    variant = "destructive"
+
+[theme]
+builtin = "Tokyo-Night"
+community_palette = "ADW"
+mode = "dark"
+shell_mode = "dark"
+source = "builtin"
+wallpaper_scheme = "m3-monochrome"
+
+    [theme.templates]
+    builtin_ids = [ "niri" ]
+    community_ids = [ "discord" ]
+
+[wallpaper]
+directory = "/home/silent/Pictures/favs"
+
+    [wallpaper.default]
+    path = "/home/silent/Pictures/favs/wallhaven-d6j79o.png"
+
+    [wallpaper.last]
+    path = "/home/silent/Pictures/favs/wallhaven-d6j79o.png"
+
+    [wallpaper.monitors.DP-2]
+    path = "/home/silent/Pictures/favs/wallhaven-d6j79o.png"
+
+[widget.active_window]
+display = "icon_only"
+min_length = 0
+
+[widget.audio_visualizer]
+anchor = true
+bands = 30
+color_1 = "secondary"
+color_2 = "tertiary"
+show_when_idle = true
+width = 120
+
+    [widget.audio_visualizer.actions]
+    back = "media previous"
+    forward = "media next"
+    left = "panel-toggle control-center media"
+    right = "media toggle"
+    scroll_down = "volume-down"
+    scroll_up = "volume-up"
+
+[widget.bar]
+color = "tertiary"
+icon_color = "tertiary"
+type = "noctalia/timer:bar"
+
+[widget.bar_3]
+color = "tertiary"
+icon_color = "tertiary"
+type = "noctalia/timer:bar"
+
+[widget.battery]
+enabled = false
+
+[widget.bluetooth]
+color = "primary"
+hide_when_no_connected_device = false
+
+[widget.brightness]
+color = "primary"
+enabled = true
+
+[widget.cat]
+audio_spectrum = true
+tappy_mode = true
+type = "noctalia/bongocat:cat"
+use_mpris_filter = true
+
+[widget.cat_audio]
+audio_spectrum = true
+input_devices = [ "/dev/input/by-id/usb-SINO_WEALTH_Gaming_KB-event-kbd" ]
+rave_mode = false
+tappy_mode = true
+type = "noctalia/bongocat:cat"
+use_mpris_filter = false
+
+    [widget.cat_audio.actions]
+    left = "panel-toggle launcher"
+
+[widget.clipboard]
+color = "secondary"
+enabled = false
+
+[widget.clock]
+color = "secondary"
+format = "{:%H:%M}"
+tooltip_format = "{:%A, %d %B, %Y}"
+vertical_format = "{:%H\\n%M}"
+
+    [widget.clock.actions]
+    right = "panel-toggle noctalia/world_clock:panel"
+
+[widget.control-center]
+enabled = false
+
+[widget.cpu]
+color = "tertiary"
+visualization = "none"
+
+[widget.launcher]
+color = "error"
+enabled = false
+glyph = "spider-filled"
+
+[widget.media]
+color = "primary"
+enabled = false
+title_scroll = "on_hover"
+
+[widget.network]
+color = "primary"
+show_label = false
+
+[widget.notifications]
+color = "error"
+hide_when_no_unread = true
+
+[widget.ram]
+color = "tertiary"
+stat = "ram_pct"
+visualization = "none"
+
+[widget.session]
+enabled = false
+
+[widget.sysmon]
+stat = "disk_used_pct"
+visualization = "none"
+
+[widget.tray]
+color = "error"
+detached_panel = true
+drawer = true
+drawer_item_size = 20.0
+
+[widget.volume]
+color = "primary"
+
+[widget.workspaces]
+focused_color = "tertiary"
+occupied_color = "primary"
+pill_scale = 1.0
+scroll_repeat = "steps"
+show_labels = false
