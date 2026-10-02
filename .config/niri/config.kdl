@@ -57,6 +57,10 @@ layout {
     }
 }
 
+environment {
+  QT_QPA_PLATFORM "wayland"
+  QT_QPA_PLATFORMTHEME "kde"
+}
 
 // Put swaybg inside the overview backdrop.
 layer-rule {
